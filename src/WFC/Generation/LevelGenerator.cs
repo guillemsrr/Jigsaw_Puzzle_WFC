@@ -16,9 +16,9 @@ namespace GodotTest.WFC.Generation
 		private const int MAX_OBSERVATION_TRIES = 10;
 
 		[Export] public PackedScene[] PiecePrefabs;
-		[Export] private Vector2I _gridDimensions = new Vector2I(5, 5);
+		[Export] public Vector2I GridDimensions = new Vector2I(5, 5);
 		[Export] private Node3D _generationParent;
-		[Export] private float _moduleSize = 2f;
+		[Export] public float ModuleSize = 2f;
 		[Export] private ulong _seed = 0;
 		[Export] private bool _randomSeed = false;
 
@@ -152,9 +152,9 @@ namespace GodotTest.WFC.Generation
 		{
 			_wave = new Wave();
 
-			for (int x = 0; x < _gridDimensions.X; x++)
+			for (int x = 0; x < GridDimensions.X; x++)
 			{
-				for (int y = 0; y < _gridDimensions.Y; y++)
+				for (int y = 0; y < GridDimensions.Y; y++)
 				{
 					CreateCell(new Vector3I(x, 0, y));
 				}
@@ -164,7 +164,7 @@ namespace GodotTest.WFC.Generation
 		private void CreateCell(Vector3I position)
 		{
 			CellController cellController =
-				new CellController(_generationParent, _modulesData.ToArray(), position, _moduleSize);
+				new CellController(_generationParent, _modulesData.ToArray(), position, ModuleSize);
 			_wave.Cells[position] = cellController;
 		}
 
@@ -182,8 +182,8 @@ namespace GodotTest.WFC.Generation
 		private void CenterPivot()
 		{
 			_generationParent.Position =
-				-new Vector3(_gridDimensions.X / 2f, _gridDimensions.Y / 2f, 0) * _moduleSize;
-			_generationParent.Position += Vector3.One * _moduleSize / 2;
+				-new Vector3(GridDimensions.X / 2f, GridDimensions.Y / 2f, 0) * ModuleSize;
+			_generationParent.Position += Vector3.One * ModuleSize / 2;
 		}
 	}
 }

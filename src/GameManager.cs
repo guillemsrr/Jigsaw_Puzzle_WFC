@@ -14,5 +14,24 @@ public partial class GameManager : Node
     {
         _generator.Initialize();
         _generator.GenerateLevel();
+
+        UpdateCameraPosition();
+        UpdateCameraParameters();
+    }
+
+    private void UpdateCameraPosition()
+    {
+        float centerX = 0f;
+        float centerZ = _generator.GridDimensions.Y * _generator.ModuleSize / 2f;
+        float height = 100f;
+
+        _camera.Position = new Vector3(centerX, height, centerZ);
+    }
+
+    private void UpdateCameraParameters()
+    {
+        float size = Mathf.Max(_generator.GridDimensions.X * _generator.ModuleSize,
+            _generator.GridDimensions.Y * _generator.ModuleSize);
+        _camera.Size = size * 1.2f;
     }
 }

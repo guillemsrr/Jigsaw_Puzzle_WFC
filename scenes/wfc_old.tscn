@@ -45,3 +45,4 @@ PuzzlePieces = Array[PackedScene]([ExtResource("3_yk7dc"), ExtResource("4_qku05"
 PuzzleTexture = ExtResource("23_dqypm")
 Rows = 50
 Columns = 50
+PieceSize = null

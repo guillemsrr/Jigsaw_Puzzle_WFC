@@ -19,20 +19,15 @@ public partial class GameManagerOld : Node
 
     private void UpdateCameraPosition()
     {
-        if (_puzzleGenerator == null || _camera == null) return;
-
-        float centerX = _puzzleGenerator.Columns * _puzzleGenerator.PieceSize / 2f;
+        float centerX = 0f;
         float centerZ = _puzzleGenerator.Rows * _puzzleGenerator.PieceSize / 2f;
-        float height = Mathf.Max(_puzzleGenerator.Columns, _puzzleGenerator.Rows) * _puzzleGenerator.PieceSize * 2f;
+        float height = 100f;
 
         _camera.Position = new Vector3(centerX, height, centerZ + height);
-        _camera.LookAt(new Vector3(centerX, 0, centerZ), Vector3.Up);
     }
 
     private void UpdateCameraParameters()
     {
-        if (_puzzleGenerator == null || _camera == null) return;
-
         float size = Mathf.Max(_puzzleGenerator.Columns * _puzzleGenerator.PieceSize,
             _puzzleGenerator.Rows * _puzzleGenerator.PieceSize);
         _camera.Size = size * 1.2f;

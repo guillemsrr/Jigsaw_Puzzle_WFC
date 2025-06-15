@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://byx5yw40puywx"]
+[gd_scene load_steps=23 format=3 uid="uid://byx5yw40puywx"]
 
 [ext_resource type="PackedScene" uid="uid://byg15i545srew" path="res://prefabs/pieces/piece_f0_t0_s4.tscn" id="3_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://bjdou6eaixkii" path="res://prefabs/pieces/piece_f2_t1_s1.tscn" id="3_iywne"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://bjkwik4e14rvb" path="res://prefabs/pieces/piece_f3_t0_s1.tscn" id="20_7025r"]
 [ext_resource type="PackedScene" uid="uid://8utk6d68ehls" path="res://prefabs/pieces/piece_f3_t1_s0.tscn" id="21_m4url"]
 [ext_resource type="PackedScene" uid="uid://bwbnoo10j826c" path="res://prefabs/pieces/piece_f4_t0_s0.tscn" id="22_8ool0"]
-[ext_resource type="Script" uid="uid://ib8kqgjb5nq7" path="res://src/WFC/Test/TestNode.cs" id="23_bt5mj"]
 [ext_resource type="Script" uid="uid://bcq4yrcq6x4vv" path="res://src/WFC/Generation/LevelGenerator.cs" id="24_e1j6l"]
 
 [node name="Main" type="Node3D"]
@@ -43,9 +42,5 @@ transform = Transform3D(0.509593, 0.692831, 0.510196, -0.335491, -0.386034, 0.85
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("24_e1j6l")
 PiecePrefabs = Array[PackedScene]([ExtResource("3_bt5mj"), ExtResource("4_e1j6l"), ExtResource("5_pl11u"), ExtResource("6_bhx41"), ExtResource("7_qnb83"), ExtResource("8_sww3w"), ExtResource("9_suyxu"), ExtResource("10_sgl2t"), ExtResource("11_qouja"), ExtResource("12_wljb1"), ExtResource("13_v2yb1"), ExtResource("14_js0lu"), ExtResource("15_gxtfn"), ExtResource("16_twgab"), ExtResource("3_iywne"), ExtResource("18_02fa5"), ExtResource("19_nepv3"), ExtResource("20_7025r"), ExtResource("21_m4url"), ExtResource("22_8ool0")])
-_gridDimensions = Vector2i(10, 10)
+GridDimensions = Vector2i(10, 10)
 _generationParent = NodePath(".")
-
-[node name="Test" type="Node3D" parent="."]
-script = ExtResource("23_bt5mj")
-packedScene = ExtResource("12_wljb1")
