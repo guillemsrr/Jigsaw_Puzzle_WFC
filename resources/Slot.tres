@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PuzzleAdjacencyResource" load_steps=2 format=3 uid="uid://cmk4v3fd3tsti"]
+
+[ext_resource type="Script" uid="uid://cftyt7pex7vbn" path="res://src/WFC/PuzzleAdjacencyResource.cs" id="1_2int4"]
+
+[resource]
+script = ExtResource("1_2int4")
+Type = 2
+metadata/_custom_type_script = "uid://cftyt7pex7vbn"

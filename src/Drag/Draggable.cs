@@ -1,7 +1,6 @@
 // Copyright (c) Guillem Serra. All Rights Reserved.
 
 using Godot;
-using GodotTest.Puzzle._3d;
 
 namespace GodotTest.Drag;
 
@@ -11,6 +10,11 @@ public partial class Draggable : Node3D
 	[Export] public StaticBody3D Target;
 	private Camera3D _camera;
 	private bool _dragging;
+
+	public bool IsDragging()
+	{
+		return _dragging;
+	}
 
 	public override void _Ready()
 	{
@@ -25,19 +29,7 @@ public partial class Draggable : Node3D
 		{
 			if (mb.Pressed)
 			{
-				// Start raycast
-				Vector3 from = _camera.ProjectRayOrigin(mb.Position);
-				Vector3 to = from + _camera.ProjectRayNormal(mb.Position) * 1000f;
-
-				var space = GetWorld3D().DirectSpaceState;
-				var query = PhysicsRayQueryParameters3D.Create(from, to);
-				query.CollideWithAreas = false;
-				query.CollideWithBodies = true;
-
-				var result = space.IntersectRay(query);
-
-				if (result.TryGetValue("collider", out var collider) &&
-					collider.Obj == Target)
+				if (IsMouseOn(mb))
 				{
 					_dragging = true;
 				}
@@ -56,7 +48,24 @@ public partial class Draggable : Node3D
 			float t = -from.Y / dir.Y;
 			Vector3 intersect = from + dir * t;
 
-			Parent.SetGlobalPosition(intersect);;
+			Parent.SetGlobalPosition(intersect);
+			;
 		}
+	}
+
+	public bool IsMouseOn(InputEventMouseButton mouseButton)
+	{
+		Vector3 from = _camera.ProjectRayOrigin(mouseButton.Position);
+		Vector3 to = from + _camera.ProjectRayNormal(mouseButton.Position) * 1000f;
+
+		var space = GetWorld3D().DirectSpaceState;
+		var query = PhysicsRayQueryParameters3D.Create(from, to);
+		query.CollideWithAreas = false;
+		query.CollideWithBodies = true;
+
+		var result = space.IntersectRay(query);
+
+		return (result.TryGetValue("collider", out var collider) &&
+				collider.Obj == Target);
 	}
 }
