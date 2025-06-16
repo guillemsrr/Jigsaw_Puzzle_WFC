@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://chknvp4y7k83w"]
 
 [ext_resource type="Script" uid="uid://drdmyanp8ryj8" path="res://src/Puzzle/PuzzlePiece.cs" id="1_ogfln"]
-[ext_resource type="Material" uid="uid://cav2xm43j6ufq" path="res://materials/SimplePuzzle.tres" id="2_ja5a0"]
+[ext_resource type="Material" uid="uid://c26gq6sjkrs3i" path="res://materials/PuzzleShader.tres" id="2_ogfln"]
 [ext_resource type="Texture2D" uid="uid://dlcw1ep1075gn" path="res://textures/uv1.png" id="3_dysk8"]
 [ext_resource type="Script" uid="uid://d18bn2bw82cqb" path="res://src/Puzzle/PuzzleVisual.cs" id="4_apmo5"]
 [ext_resource type="Script" uid="uid://cyms307xc3fo4" path="res://src/Drag/Draggable.cs" id="5_hov7s"]
@@ -56,7 +56,7 @@ Draggable = NodePath("Draggable")
 AdjacencyData = NodePath("WFCData")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = ExtResource("2_ja5a0")
+material_override = ExtResource("2_ogfln")
 mesh = SubResource("ArrayMesh_0xkrb")
 script = ExtResource("4_apmo5")
 

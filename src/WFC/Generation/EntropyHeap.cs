@@ -57,7 +57,6 @@ namespace GodotTest.WFC.Generation
         public CellController GetCell()
         {
             CellController cell = null;
-            
             do
             {
                 if (_sortedCells.Count == 0) break;

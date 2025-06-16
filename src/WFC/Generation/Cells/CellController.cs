@@ -40,7 +40,7 @@ namespace GodotTest.WFC.Generation.Cells
             CellData.CollapsedModuleData = moduleData;
         }
 
-        public void InstantiateModule()
+        public Node3D InstantiateModule()
         {
             Vector3 position = new Vector3(Position.X, Position.Y, Position.Z);
             position *= _size;
@@ -55,6 +55,8 @@ namespace GodotTest.WFC.Generation.Cells
             string sceneName =
                 System.IO.Path.GetFileNameWithoutExtension(CellData.CollapsedModuleData.PackedScene.ResourcePath);
             moduleInstance.Name = $"Module_{sceneName}{Position}";
+
+            return moduleInstance;
         }
 
         private ModuleData GetWeightedRandomModule()
@@ -77,20 +79,20 @@ namespace GodotTest.WFC.Generation.Cells
             return CellData.PossibleModules[0];
         }
 
-        public bool Propagate(Direction direction, ModuleData collapsedAdjacencyData)
+        public bool Propagate(Direction direction, ModuleData collapsedModuleData)
         {
             Queue<ModuleData> impossibleModules = new();
 
             foreach (ModuleData possibleModule in CellData.PossibleModules)
             {
-                if (!ModuleConnectionChecker.CanConnect(collapsedAdjacencyData, possibleModule, direction))
+                if (!ModuleConnectionChecker.CanConnect(collapsedModuleData, possibleModule, direction))
                 {
+                    bool x = ModuleConnectionChecker.CanConnect(collapsedModuleData, possibleModule, direction);
                     impossibleModules.Enqueue(possibleModule);
                 }
             }
 
             bool changed = impossibleModules.Count != 0;
-
             foreach (ModuleData impossibleModule in impossibleModules)
             {
                 RemoveImpossibleModule(impossibleModule);

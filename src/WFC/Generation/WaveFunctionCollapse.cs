@@ -15,9 +15,9 @@ namespace GodotTest.WFC.Generation
         private EntropyHeap _entropyHeap;
         private BacktrackingHandler _backtrackingHandler;
         private int _numberTries;
-        private const int MAX_OBSERVATION_TRIES = 100;
+        private const int MAX_OBSERVATION_TRIES = 1000;
 
-        private int NumberCells => _uncollapsedCells.Count;
+        private int NumberUncollapsedCells => _uncollapsedCells.Count;
 
         public WaveFunctionCollapse(Wave wave)
         {
@@ -25,19 +25,20 @@ namespace GodotTest.WFC.Generation
             _uncollapsedCells = new List<CellController>(wave.Cells.Values);
             _entropyHeap = new EntropyHeap(wave.Cells.Values);
             _backtrackingHandler = new BacktrackingHandler(this);
-            _backtrackingHandler.AddState(_wave, _uncollapsedCells, _entropyHeap);
         }
 
         public bool Observe()
         {
-            while (NumberCells != 0)
+            _backtrackingHandler.AddState(_wave, _uncollapsedCells, _entropyHeap);
+
+            while (NumberUncollapsedCells != 0)
             {
-                _numberTries++;
+                /*_numberTries++;
                 if (_numberTries > MAX_OBSERVATION_TRIES)
                 {
                     GD.PrintErr("Couldn't find a solution");
                     return false;
-                }
+                }*/
 
                 CellController randomCell = _entropyHeap.GetCell();
                 if (randomCell == null)
@@ -106,7 +107,7 @@ namespace GodotTest.WFC.Generation
                     }
 
                     Vector3I neighborPos = cell.Position + offsetVec;
-                    if (!_wave.Cells.TryGetValue(neighborPos, out var neighborCell))
+                    if (!_wave.Cells.TryGetValue(neighborPos, out CellController neighborCell))
                     {
                         continue;
                     }

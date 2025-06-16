@@ -3,7 +3,6 @@
 using Godot;
 using GodotTest.Drag;
 using GodotTest.WFC.Adjacency;
-using GodotTest.WFC.Modules;
 
 namespace GodotTest.Puzzle
 {
@@ -14,23 +13,9 @@ namespace GodotTest.Puzzle
         [Export] public AdjacencyData AdjacencyData;
         [Export] private float RotationSpeed = 0.3f;
 
-        public int Row;
-        public int Col;
-
-        public Vector2 UVRegionOrigin;
-        public Vector2 UVRegionSize;
-
         private float _targetRotation = 0.0f;
 
         private Tween _rotationTween;
-
-        public void Init()
-        {
-            if (PuzzleVisual != null)
-            {
-                PuzzleVisual.UpdateUv(this);
-            }
-        }
 
         public override void _UnhandledInput(InputEvent @event)
         {

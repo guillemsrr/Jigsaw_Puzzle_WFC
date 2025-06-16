@@ -13,7 +13,7 @@ namespace GodotTest.WFC.Generation
 {
 	public partial class LevelGenerator : Node3D
 	{
-		private const int MAX_OBSERVATION_TRIES = 10;
+		private const int MAX_OBSERVATION_TRIES = 0;
 
 		[Export] public PackedScene[] PiecePrefabs;
 		[Export] public Vector2I GridDimensions = new Vector2I(5, 5);
@@ -29,11 +29,16 @@ namespace GodotTest.WFC.Generation
 		private List<ConstraintApplier> _constraints;
 		private int _observationTries;
 
+		public Dictionary<Vector3I, Node3D> InstancedModules = new Dictionary<Vector3I, Node3D>();
+
 		private ModuleRotationChecker _moduleRotationChecker = new ModuleRotationChecker();
 
 		public void Initialize()
 		{
 			_modulesData = ExtractDataFromModules();
+			CreateCells();
+			InitializeSubClasses();
+			ApplyConstraints();
 		}
 
 		private List<ModuleData> ExtractDataFromModules()
@@ -62,9 +67,6 @@ namespace GodotTest.WFC.Generation
 		public void GenerateLevel()
 		{
 			SetRandom();
-			CreateCells();
-			InitializeSubClasses();
-			ApplyConstraints();
 
 			if (!Observe())
 			{
@@ -83,7 +85,6 @@ namespace GodotTest.WFC.Generation
 			}
 
 			DrawCells();
-			CenterPivot();
 		}
 
 		private bool Observe()
@@ -113,6 +114,7 @@ namespace GodotTest.WFC.Generation
 
 		private void DrawCells()
 		{
+			InstancedModules = new Dictionary<Vector3I, Node3D>();
 			foreach (CellController cell in _wave.Cells.Values)
 			{
 				if (!cell.IsCollapsed)
@@ -121,7 +123,8 @@ namespace GodotTest.WFC.Generation
 					continue;
 				}
 
-				cell.InstantiateModule();
+				Node3D module = cell.InstantiateModule();
+				InstancedModules.Add(cell.Position, module);
 			}
 		}
 
@@ -137,14 +140,11 @@ namespace GodotTest.WFC.Generation
 		{
 			_constraints = new List<ConstraintApplier>()
 			{
-				//new PerimeterConstraint(, _gridDimensions)
+				new PerimeterConstraint(new Vector3I(GridDimensions.X, 1, GridDimensions.Y))
 			};
 
 			_frequencyController = new FrequencyController();
-			//_frequencyController.SetSpecificElementRandomFrequency(_modulesData.ToArray(), 0);
-			//_frequencyController.SetOneRandomElementHighFrequency(_modulesData.ToArray());
 			_frequencyController.CalculateInitialWeight(_wave.Cells.Values);
-
 			_waveFunctionCollapse = new WaveFunctionCollapse(_wave);
 		}
 
@@ -176,14 +176,6 @@ namespace GodotTest.WFC.Generation
 			}*/
 
 			_wave.Cells.Clear();
-			_observationTries = 0;
-		}
-
-		private void CenterPivot()
-		{
-			_generationParent.Position =
-				-new Vector3(GridDimensions.X / 2f, GridDimensions.Y / 2f, 0) * ModuleSize;
-			_generationParent.Position += Vector3.One * ModuleSize / 2;
 		}
 	}
 }

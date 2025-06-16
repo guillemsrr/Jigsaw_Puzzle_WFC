@@ -1,27 +1,30 @@
-[gd_scene load_steps=23 format=3 uid="uid://byx5yw40puywx"]
+[gd_scene load_steps=25 format=3 uid="uid://byx5yw40puywx"]
 
+[ext_resource type="Texture2D" uid="uid://b1mcdgr0p616u" path="res://textures/icon.svg" id="2_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://byg15i545srew" path="res://prefabs/pieces/piece_f0_t0_s4.tscn" id="3_bt5mj"]
-[ext_resource type="PackedScene" uid="uid://bjdou6eaixkii" path="res://prefabs/pieces/piece_f2_t1_s1.tscn" id="3_iywne"]
-[ext_resource type="PackedScene" uid="uid://bex5ccipaaycy" path="res://prefabs/pieces/piece_f0_t1_s3.tscn" id="4_e1j6l"]
 [ext_resource type="Script" uid="uid://xrvpeqv76oun" path="res://src/GameManager.cs" id="4_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://dilvkfwn7vu46" path="res://prefabs/pieces/piece_f0_t2_s2.tscn" id="5_pl11u"]
-[ext_resource type="PackedScene" uid="uid://dch52s8l61481" path="res://prefabs/pieces/piece_f0_t2_s2_sym.tscn" id="6_bhx41"]
-[ext_resource type="PackedScene" uid="uid://bcj1hsp8oirtj" path="res://prefabs/pieces/piece_f0_t3_s1.tscn" id="7_qnb83"]
-[ext_resource type="PackedScene" uid="uid://ouk131yu6nct" path="res://prefabs/pieces/piece_f0_t4_s0.tscn" id="8_sww3w"]
-[ext_resource type="PackedScene" uid="uid://cviwpcnuv8c8q" path="res://prefabs/pieces/piece_f1_t0_s3.tscn" id="9_suyxu"]
-[ext_resource type="PackedScene" uid="uid://bbhxhbhf201y1" path="res://prefabs/pieces/piece_f1_t1_s2.tscn" id="10_sgl2t"]
-[ext_resource type="PackedScene" uid="uid://bcirip2cghelf" path="res://prefabs/pieces/piece_f1_t2_s1_asym1.tscn" id="11_qouja"]
-[ext_resource type="PackedScene" uid="uid://cb5wkvaoy6bdc" path="res://prefabs/pieces/piece_f1_t2_s1_asym.tscn" id="12_wljb1"]
-[ext_resource type="PackedScene" uid="uid://cve8ybndrajeu" path="res://prefabs/pieces/piece_f1_t2_s1_sym.tscn" id="13_v2yb1"]
-[ext_resource type="PackedScene" uid="uid://17nui3fem7qq" path="res://prefabs/pieces/piece_f1_t3_s0.tscn" id="14_js0lu"]
+[ext_resource type="PackedScene" uid="uid://bex5ccipaaycy" path="res://prefabs/pieces/piece_f0_t1_s3.tscn" id="5_37s47"]
+[ext_resource type="PackedScene" uid="uid://dilvkfwn7vu46" path="res://prefabs/pieces/piece_f0_t2_s2.tscn" id="6_bt5mj"]
+[ext_resource type="PackedScene" uid="uid://bjdou6eaixkii" path="res://prefabs/pieces/piece_f2_t1_s1.tscn" id="6_gee14"]
+[ext_resource type="PackedScene" uid="uid://cumj8ujlde286" path="res://prefabs/pieces/piece_f2_t1_s1_sym.tscn" id="7_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dch52s8l61481" path="res://prefabs/pieces/piece_f0_t2_s2_sym.tscn" id="7_e1j6l"]
+[ext_resource type="PackedScene" uid="uid://bcj1hsp8oirtj" path="res://prefabs/pieces/piece_f0_t3_s1.tscn" id="8_pl11u"]
+[ext_resource type="PackedScene" uid="uid://bfwcwiimir30c" path="res://prefabs/pieces/piece_f2_t0_s2_sym.tscn" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://ouk131yu6nct" path="res://prefabs/pieces/piece_f0_t4_s0.tscn" id="9_bhx41"]
+[ext_resource type="PackedScene" uid="uid://cviwpcnuv8c8q" path="res://prefabs/pieces/piece_f1_t0_s3.tscn" id="10_qnb83"]
+[ext_resource type="PackedScene" uid="uid://bbhxhbhf201y1" path="res://prefabs/pieces/piece_f1_t1_s2.tscn" id="11_sww3w"]
+[ext_resource type="PackedScene" uid="uid://bcirip2cghelf" path="res://prefabs/pieces/piece_f1_t2_s1_asym1.tscn" id="12_suyxu"]
+[ext_resource type="PackedScene" uid="uid://cb5wkvaoy6bdc" path="res://prefabs/pieces/piece_f1_t2_s1_asym.tscn" id="13_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://cve8ybndrajeu" path="res://prefabs/pieces/piece_f1_t2_s1_sym.tscn" id="14_qouja"]
 [ext_resource type="PackedScene" uid="uid://b2dvv2uver44e" path="res://prefabs/pieces/piece_f2_t0_s2.tscn" id="15_gxtfn"]
-[ext_resource type="PackedScene" uid="uid://bfwcwiimir30c" path="res://prefabs/pieces/piece_f2_t0_s2_sym.tscn" id="16_twgab"]
-[ext_resource type="PackedScene" uid="uid://cumj8ujlde286" path="res://prefabs/pieces/piece_f2_t1_s1_sym.tscn" id="18_02fa5"]
+[ext_resource type="PackedScene" uid="uid://17nui3fem7qq" path="res://prefabs/pieces/piece_f1_t3_s0.tscn" id="15_wljb1"]
 [ext_resource type="PackedScene" uid="uid://cga0akvqs3jb4" path="res://prefabs/pieces/piece_f2_t2_s0.tscn" id="19_nepv3"]
-[ext_resource type="PackedScene" uid="uid://bjkwik4e14rvb" path="res://prefabs/pieces/piece_f3_t0_s1.tscn" id="20_7025r"]
-[ext_resource type="PackedScene" uid="uid://8utk6d68ehls" path="res://prefabs/pieces/piece_f3_t1_s0.tscn" id="21_m4url"]
-[ext_resource type="PackedScene" uid="uid://bwbnoo10j826c" path="res://prefabs/pieces/piece_f4_t0_s0.tscn" id="22_8ool0"]
+[ext_resource type="PackedScene" uid="uid://bjkwik4e14rvb" path="res://prefabs/pieces/piece_f3_t0_s1.tscn" id="20_v2yb1"]
+[ext_resource type="PackedScene" uid="uid://8utk6d68ehls" path="res://prefabs/pieces/piece_f3_t1_s0.tscn" id="21_js0lu"]
+[ext_resource type="PackedScene" uid="uid://bwbnoo10j826c" path="res://prefabs/pieces/piece_f4_t0_s0.tscn" id="22_gxtfn"]
 [ext_resource type="Script" uid="uid://bcq4yrcq6x4vv" path="res://src/WFC/Generation/LevelGenerator.cs" id="24_e1j6l"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bt5mj"]
 
 [node name="Main" type="Node3D"]
 
@@ -29,6 +32,7 @@
 script = ExtResource("4_lbhrr")
 _generator = NodePath("../LevelGenerator")
 _camera = NodePath("../Camera3D")
+_puzzleTexture = ExtResource("2_bt5mj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.677, 30.544, 2.595)
@@ -39,8 +43,12 @@ size = 10.0
 transform = Transform3D(0.509593, 0.692831, 0.510196, -0.335491, -0.386034, 0.859316, 0.792313, -0.609068, 0.0357182, 0, 5, 0)
 
 [node name="LevelGenerator" type="Node3D" parent="." node_paths=PackedStringArray("_generationParent")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("24_e1j6l")
-PiecePrefabs = Array[PackedScene]([ExtResource("3_bt5mj"), ExtResource("4_e1j6l"), ExtResource("5_pl11u"), ExtResource("6_bhx41"), ExtResource("7_qnb83"), ExtResource("8_sww3w"), ExtResource("9_suyxu"), ExtResource("10_sgl2t"), ExtResource("11_qouja"), ExtResource("12_wljb1"), ExtResource("13_v2yb1"), ExtResource("14_js0lu"), ExtResource("15_gxtfn"), ExtResource("16_twgab"), ExtResource("3_iywne"), ExtResource("18_02fa5"), ExtResource("19_nepv3"), ExtResource("20_7025r"), ExtResource("21_m4url"), ExtResource("22_8ool0")])
+PiecePrefabs = Array[PackedScene]([ExtResource("3_bt5mj"), ExtResource("5_37s47"), ExtResource("6_bt5mj"), ExtResource("7_e1j6l"), ExtResource("8_pl11u"), ExtResource("9_bhx41"), ExtResource("10_qnb83"), ExtResource("11_sww3w"), ExtResource("12_suyxu"), ExtResource("13_sgl2t"), ExtResource("14_qouja"), ExtResource("15_wljb1"), ExtResource("15_gxtfn"), ExtResource("8_vtaks"), ExtResource("6_gee14"), ExtResource("7_0tnpc"), ExtResource("19_nepv3"), ExtResource("20_v2yb1"), ExtResource("21_js0lu"), ExtResource("22_gxtfn")])
 GridDimensions = Vector2i(10, 10)
 _generationParent = NodePath(".")
+_randomSeed = true
+
+[node name="Background" type="MeshInstance3D" parent="."]
+transform = Transform3D(528.447, 0, 0, 0, 1, 0, 0, 0, 546.808, 0, -34.0056, 0)
+mesh = SubResource("PlaneMesh_bt5mj")

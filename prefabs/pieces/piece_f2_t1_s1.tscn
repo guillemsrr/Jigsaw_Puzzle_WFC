@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://bjdou6eaixkii"]
+[gd_scene load_steps=8 format=4 uid="uid://bjdou6eaixkii"]
 
 [ext_resource type="PackedScene" uid="uid://chknvp4y7k83w" path="res://prefabs/PuzzlePieceBase.tscn" id="1_pku47"]
 [ext_resource type="Texture2D" uid="uid://dlcw1ep1075gn" path="res://textures/uv1.png" id="2_p25cf"]
+[ext_resource type="Resource" uid="uid://ctygowyn4d2hf" path="res://resources/Tab.tres" id="3_gdpcs"]
 [ext_resource type="Resource" uid="uid://cmk4v3fd3tsti" path="res://resources/Slot.tres" id="3_p25cf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ea4oh"]
@@ -49,5 +50,5 @@ shadow_mesh = SubResource("ArrayMesh_2lbqw")
 mesh = SubResource("ArrayMesh_vbhkd")
 
 [node name="WFCData" parent="." index="3"]
-Top = ExtResource("3_p25cf")
+Top = ExtResource("3_gdpcs")
 Right = ExtResource("3_p25cf")

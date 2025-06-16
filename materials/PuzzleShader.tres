@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c26gq6sjkrs3i"]
+
+[ext_resource type="Shader" uid="uid://dgqgba7nwx0bx" path="res://materials/PuzzleShader.gdshader" id="1_4k84p"]
+[ext_resource type="Texture2D" uid="uid://b1mcdgr0p616u" path="res://textures/icon.svg" id="2_rhyhi"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_4k84p")
+shader_parameter/albedo_texture = ExtResource("2_rhyhi")
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_rotation = 0.0
