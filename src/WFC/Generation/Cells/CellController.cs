@@ -82,12 +82,10 @@ namespace GodotTest.WFC.Generation.Cells
         public bool Propagate(Direction direction, ModuleData collapsedModuleData)
         {
             Queue<ModuleData> impossibleModules = new();
-
             foreach (ModuleData possibleModule in CellData.PossibleModules)
             {
                 if (!ModuleConnectionChecker.CanConnect(collapsedModuleData, possibleModule, direction))
                 {
-                    bool x = ModuleConnectionChecker.CanConnect(collapsedModuleData, possibleModule, direction);
                     impossibleModules.Enqueue(possibleModule);
                 }
             }

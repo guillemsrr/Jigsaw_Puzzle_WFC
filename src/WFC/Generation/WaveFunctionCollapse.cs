@@ -96,7 +96,7 @@ namespace GodotTest.WFC.Generation
 
                 if (!cell.IsCollapsed)
                 {
-                    return;
+                    continue;
                 }
 
                 foreach ((Direction direction, Vector3I offsetVec) in Directions.DirectionsByVectors)
@@ -118,7 +118,6 @@ namespace GodotTest.WFC.Generation
                     }
 
                     ModuleData collapsedModule = cell.CellData.CollapsedModuleData;
-
                     bool changed = neighborCell.Propagate(direction, collapsedModule);
                     if (neighborCell.CellData.IsErroneus)
                     {
