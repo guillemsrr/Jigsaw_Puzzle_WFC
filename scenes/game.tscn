@@ -1,6 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://byx5yw40puywx"]
+[gd_scene load_steps=28 format=3 uid="uid://byx5yw40puywx"]
 
-[ext_resource type="Texture2D" uid="uid://b1mcdgr0p616u" path="res://textures/icon.svg" id="2_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://beid1utnsi5uk" path="res://textures/Godot_icon.svg.png" id="2_bhx41"]
 [ext_resource type="PackedScene" uid="uid://byg15i545srew" path="res://prefabs/pieces/piece_f0_t0_s4.tscn" id="3_bt5mj"]
 [ext_resource type="Script" uid="uid://xrvpeqv76oun" path="res://src/GameManager.cs" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bex5ccipaaycy" path="res://prefabs/pieces/piece_f0_t1_s3.tscn" id="5_37s47"]
@@ -24,16 +24,19 @@
 [ext_resource type="PackedScene" uid="uid://bwbnoo10j826c" path="res://prefabs/pieces/piece_f4_t0_s0.tscn" id="22_gxtfn"]
 [ext_resource type="Script" uid="uid://bcq4yrcq6x4vv" path="res://src/WFC/Generation/LevelGenerator.cs" id="24_e1j6l"]
 [ext_resource type="Material" uid="uid://dp7agm601up4o" path="res://materials/basic_material.tres" id="24_pl11u"]
+[ext_resource type="Script" uid="uid://bsim7cwv4v7dg" path="res://src/UI/hud.gd" id="25_pl11u"]
+[ext_resource type="Theme" uid="uid://uyr6pqkjj3te" path="res://themes/ui_theme.tres" id="26_bhx41"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bt5mj"]
 
 [node name="Main" type="Node3D"]
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("_generator", "_camera")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("_generator", "_camera", "_fileDialog")]
 script = ExtResource("4_lbhrr")
 _generator = NodePath("../LevelGenerator")
 _camera = NodePath("../Camera3D")
-_puzzleTexture = ExtResource("2_e1j6l")
+_puzzleTexture = ExtResource("2_bhx41")
+_fileDialog = NodePath("../CanvasLayer/FileDialog")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.677, 30.544, 2.595)
@@ -47,9 +50,109 @@ transform = Transform3D(0.509593, 0.692831, 0.510196, -0.335491, -0.386034, 0.85
 script = ExtResource("24_e1j6l")
 PiecePrefabs = Array[PackedScene]([ExtResource("3_bt5mj"), ExtResource("5_37s47"), ExtResource("6_bt5mj"), ExtResource("7_e1j6l"), ExtResource("8_pl11u"), ExtResource("9_bhx41"), ExtResource("10_qnb83"), ExtResource("11_sww3w"), ExtResource("12_suyxu"), ExtResource("13_sgl2t"), ExtResource("14_qouja"), ExtResource("15_wljb1"), ExtResource("15_gxtfn"), ExtResource("8_vtaks"), ExtResource("6_gee14"), ExtResource("7_0tnpc"), ExtResource("19_nepv3"), ExtResource("20_v2yb1"), ExtResource("21_js0lu"), ExtResource("22_gxtfn")])
 _generationParent = NodePath(".")
-_randomSeed = true
 
 [node name="Background" type="MeshInstance3D" parent="."]
 transform = Transform3D(528.447, 0, 0, 0, 1, 0, 0, 0, 546.808, 0, -29.6878, 0)
 material_override = ExtResource("24_pl11u")
 mesh = SubResource("PlaneMesh_bt5mj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("game_manager", "level_generator", "generate_button", "solve_button", "randomize_button", "column_spinbox", "row_spinbox", "option_button", "upload_button", "file_dialog")]
+offset = Vector2(20, 20)
+transform = Transform2D(1, 0, 0, 1, 20, 20)
+script = ExtResource("25_pl11u")
+game_manager = NodePath("../GameManager")
+level_generator = NodePath("../LevelGenerator")
+generate_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Button_Generate")
+solve_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Button_Solve")
+randomize_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Button_Randomize")
+column_spinbox = NodePath("PanelContainer/MarginContainer/VBoxContainer/SpinBox_Columns")
+row_spinbox = NodePath("PanelContainer/MarginContainer/VBoxContainer/SpinBox_Rows")
+option_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button_Option")
+upload_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/Button_UploadImage")
+file_dialog = NodePath("FileDialog")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 375.0
+offset_bottom = 406.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Button_Generate" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+text = "Generate"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("26_bhx41")
+text = " Type:
+"
+scroll_active = false
+autowrap_mode = 0
+tab_size = 3
+
+[node name="Button_Option" type="OptionButton" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+selected = 0
+item_count = 3
+popup/item_0/text = "Solved"
+popup/item_0/id = 0
+popup/item_1/text = "Animated"
+popup/item_1/id = 1
+popup/item_2/text = "Randomized"
+popup/item_2/id = 2
+
+[node name="Button_Solve" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+text = "Solve"
+
+[node name="Button_Randomize" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+text = "Randomize"
+
+[node name="SpinBox_Columns" type="SpinBox" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+min_value = 2.0
+value = 5.0
+rounded = true
+alignment = 1
+prefix = "Columns:"
+
+[node name="SpinBox_Rows" type="SpinBox" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+min_value = 1.0
+value = 5.0
+rounded = true
+alignment = 1
+prefix = "Rows: "
+
+[node name="Button_UploadImage" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("26_bhx41")
+text = "Upload image
+"
+
+[node name="FileDialog" type="FileDialog" parent="CanvasLayer"]
+title = "Open a File"
+position = Vector2i(475, 101)
+size = Vector2i(710, 645)
+theme = ExtResource("26_bhx41")
+ok_button_text = "Open"
+file_mode = 0
+access = 2

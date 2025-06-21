@@ -16,11 +16,13 @@ namespace GodotTest.WFC.Generation
 		private const int MAX_OBSERVATION_TRIES = 0;
 
 		[Export] public PackedScene[] PiecePrefabs;
-		[Export] public Vector2I GridDimensions = new Vector2I(5, 5);
 		[Export] private Node3D _generationParent;
 		[Export] public float ModuleSize = 2f;
 		[Export] private ulong _seed = 0;
-		[Export] private bool _randomSeed = false;
+		[Export] private bool _randomSeed = true;
+		private RandomNumberGenerator _rng = new RandomNumberGenerator();
+
+		public Vector2I GridDimensions { get; set; } = new Vector2I(5, 5);
 
 		private List<ModuleData> _modulesData = new List<ModuleData>();
 		private Wave _wave = new Wave();
@@ -36,6 +38,10 @@ namespace GodotTest.WFC.Generation
 		public void Initialize()
 		{
 			_modulesData = ExtractDataFromModules();
+		}
+
+		public void PrepareGeneration()
+		{
 			CreateCells();
 			InitializeSubClasses();
 			ApplyConstraints();
@@ -66,6 +72,11 @@ namespace GodotTest.WFC.Generation
 
 		public void GenerateLevel()
 		{
+			foreach (var keyValuePair in InstancedModules)
+			{
+				keyValuePair.Value.QueueFree();
+			}
+
 			SetRandom();
 
 			if (!Observe())
@@ -124,6 +135,8 @@ namespace GodotTest.WFC.Generation
 				}
 
 				Node3D module = cell.InstantiateModule();
+				var piece = (PuzzlePiece) module;
+				piece.SetCurrentAsPuzzleSolution();
 				InstancedModules.Add(cell.Position, module);
 			}
 		}

@@ -16,6 +16,14 @@ namespace GodotTest.Puzzle
         private float _targetRotation = 0.0f;
 
         private Tween _rotationTween;
+        public Vector3 PuzzlePosition { get; private set; }
+        public Quaternion PuzzleRotation { get; private set; }
+
+        public void SetCurrentAsPuzzleSolution()
+        {
+            PuzzlePosition = GetGlobalPosition();
+            PuzzleRotation = GetQuaternion();
+        }
 
         public override void _UnhandledInput(InputEvent @event)
         {
